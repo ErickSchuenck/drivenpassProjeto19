@@ -1,6 +1,6 @@
-import { prisma } from "@prisma/client"
+import prisma from "../config/database.js"
 
-export async function registerUser(data : {email : string, password : string}) {
+export async function registerUser(data : {email : string, encryptedPassword : string}) {
   const userAlreadyExits = await checkUserExistance(data.email)
   if (userAlreadyExits) {
     throw { 
