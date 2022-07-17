@@ -13,7 +13,14 @@ export function decrypt(password : string){
 }
 
 export function compare(password : string, encryptedPassword : string){
-  return bcrypt.compareSync(password, encryptedPassword)
+  const verification = bcrypt.compareSync(password, encryptedPassword)
+  if (!verification) {
+    throw {
+      status: 401,
+      type: "Unauthorized", 
+      message: "Incorrect password, please double check the input"
+    }
+  }
 }
 
 export function hash(password : string){
