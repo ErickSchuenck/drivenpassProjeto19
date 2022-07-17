@@ -21,3 +21,12 @@ export async function insertCredential( url : string, title : string, userName :
         }
     })
 }
+
+export async function getAllCredentialsByUserId(userId:number) {
+    const result = await prisma.credentials.findMany({
+        where: {
+            ownerId: userId,
+        }
+    });
+    return result;
+}

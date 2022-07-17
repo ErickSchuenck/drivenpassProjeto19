@@ -30,3 +30,9 @@ async function checkIfCredentialIsUnique(title : string, userId : number) {
     }
   }
 }
+
+export async function getAllCredentials(userId: number) {
+  const allCredentials =  await credentialsRepository.getAllCredentialsByUserId(userId)
+  const decryptedCredentials = allCredentials.map(item => item.password = encryptServices.decrypt(item.password))
+  return decryptedCredentials;
+}

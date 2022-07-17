@@ -5,7 +5,7 @@ export const UserSchema = joi.object({
   password: joi.string().min(10).required()
 })
 
-export const credentialsSchema = joi.object({
+export const createCredentialsSchema = joi.object({
     url: joi.string().uri().required(),  
     title: joi.string().required(),
     userName: joi.string().required(),
