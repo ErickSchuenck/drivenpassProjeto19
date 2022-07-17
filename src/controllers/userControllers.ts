@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import * as userService from "../services/userService.js"
+import * as userService from "../services/userServices.js"
 import * as encryptServices from "../services/encryptServices.js"
 
 export async function registerUser (req: Request, res: Response) {
@@ -11,6 +11,7 @@ export async function registerUser (req: Request, res: Response) {
 }
 
 export async function login(req: Request, res: Response) {
-  const {password, email} : {password : string, email : string}= req.body;
-  
+  const data : {password : string, email : string}= req.body;
+  const token = userService.login(data)
+  res.status(200).send(token)
 }
