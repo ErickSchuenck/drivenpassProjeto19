@@ -46,5 +46,8 @@ export async function getCredentialById(userId: number, credentialId : number) {
       message: 'Credential not found'
     }
   }
-  return credential
+  const {id, ownerId, password, title, url, userName} = credential;
+  const decryptedPassword = encryptServices.decrypt(password)
+  const decryptedCredential = {id, ownerId, decryptedPassword, title, url, userName}
+  return decryptedCredential;
 }
