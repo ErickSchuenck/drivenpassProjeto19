@@ -30,3 +30,13 @@ export async function getAllCredentialsByUserId(userId:number) {
     });
     return result;
 }
+
+export async function getCredentialById(userId : number, credentialId : number) {
+    const result = await prisma.credentials.findFirst({
+        where: {
+            id: credentialId,
+            ownerId: userId
+        }
+    });
+    return result;
+}

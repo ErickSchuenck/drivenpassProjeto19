@@ -36,3 +36,15 @@ export async function getAllCredentials(userId: number) {
   const decryptedCredentials = allCredentials.map(item => item.password = encryptServices.decrypt(item.password))
   return decryptedCredentials;
 }
+
+export async function getCredentialById(userId: number, credentialId : number) {
+  const credential = await credentialsRepository.getCredentialById(userId, credentialId);
+  if (!credential) {
+    throw {
+      status: 404,
+      type: 'Not Found',
+      message: 'Credential not found'
+    }
+  }
+  return credential
+}
