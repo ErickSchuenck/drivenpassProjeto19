@@ -17,9 +17,9 @@ model users {
 model credentials {
   id Int @id @default(autoincrement())
   url String 
-  name String
+  userName String
   password String
   title String
-  userId Int
-  user users @relation(fields: [userId], references: [id])
+  owner users @relation(fields: [ownerId], references: [id])
+  ownerId Int
 }
