@@ -51,3 +51,15 @@ export async function getCredentialById(userId: number, credentialId : number) {
   const decryptedCredential = {id, ownerId, decryptedPassword, title, url, userName}
   return decryptedCredential;
 }
+
+export async function deleteCredentialById(userId : number, credentialId : number) {
+  const credential = await credentialsRepository.getCredentialById(userId, credentialId);
+  if (!credential) {
+    throw {
+      status: 404,
+      type: 'Not Found',
+      message: "Credential not found, or you don't have ownership over this credential"
+    }
+  }
+  await credentialsRepository.deleteCredentialById(userId, credentialId)
+}
