@@ -58,7 +58,14 @@ export async function deleteCredentialById(userId : number, credentialId : numbe
     throw {
       status: 404,
       type: 'Not Found',
-      message: "Credential not found, or you don't have ownership over this credential"
+      message: "Credential not found"
+    }
+  }
+  if (credential.ownerId !== userId){
+    throw {
+      status: 401,
+      type: 'Unathorized',
+      message: "You have no ownership over this credential"
     }
   }
   await credentialsRepository.deleteCredentialById(userId, credentialId)
