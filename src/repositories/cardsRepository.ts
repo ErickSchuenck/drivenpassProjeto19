@@ -39,3 +39,12 @@ export async function insertCard(data : insertData) {
         }
     })
 }
+
+export async function getAllCardsByUserId(userId : number) {
+    const result = await prisma.cards.findMany({
+        where: {
+            ownerId: userId,
+        }
+    });
+    return result;
+}

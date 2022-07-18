@@ -9,3 +9,9 @@ export async function registerCard(req: Request, res: Response) {
   await cardServices.registerCard(data)
   res.sendStatus(201)
 }
+
+export async function getAllCards(req: Request, res: Response) {
+  const { userId } = res.locals;
+  const allCards = await cardServices.getAllCards(userId);
+  res.status(200).send(allCards)
+}

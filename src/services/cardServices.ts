@@ -32,3 +32,12 @@ async function checkIfCardIsUnique(title : string, userId : number) {
     }
   }
 }
+
+export async function getAllCards(userId : number) {
+  const allCards =  await cardRepository.getAllCardsByUserId(userId)
+  const decryptedCards = allCards.map(card => {
+        card.password = encryptServices.decrypt(card.password)
+        card.cvc = encryptServices.decrypt(card.cvc)
+      })
+  return decryptedCards;
+}
