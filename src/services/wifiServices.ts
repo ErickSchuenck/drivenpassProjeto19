@@ -34,7 +34,7 @@ export async function getWifiById(userId : number, wifiId : number) {
     }
   }
   const decryptedWifiPassword = encryptServices.decrypt(wifi.password)
-  return {...wifi, decryptedWifiPassword};
+  return {...wifi, password : decryptedWifiPassword};
 }
 
 export async function deleteWifiById(userId : number, wifiId : number){

@@ -112,7 +112,7 @@ export function getWifiById(userId, wifiId) {
                         };
                     }
                     decryptedWifiPassword = encryptServices.decrypt(wifi.password);
-                    return [2 /*return*/, __assign(__assign({}, wifi), { decryptedWifiPassword: decryptedWifiPassword })];
+                    return [2 /*return*/, __assign(__assign({}, wifi), { password: decryptedWifiPassword })];
             }
         });
     });

@@ -41,7 +41,7 @@ export function registerNote(req, res) {
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    userId = res.locals.userId;
+                    userId = parseInt(res.locals.userId);
                     _a = req.body, content = _a.content, title = _a.title;
                     return [4 /*yield*/, notesServices.registerNote(userId, content, title)];
                 case 1:
@@ -58,7 +58,7 @@ export function getAllNotesByUserId(req, res) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    userId = res.locals.userId;
+                    userId = parseInt(res.locals.userId);
                     return [4 /*yield*/, notesServices.getAllNotes(userId)];
                 case 1:
                     allNotes = _a.sent();
@@ -74,7 +74,7 @@ export function getNoteById(req, res) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    userId = res.locals.userId;
+                    userId = parseInt(res.locals.userId);
                     noteId = parseInt(req.params.noteId);
                     return [4 /*yield*/, notesServices.getNotelById(userId, noteId)];
                 case 1:
@@ -91,7 +91,7 @@ export function deleteNoteById(req, res) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    userId = res.locals.userId;
+                    userId = parseInt(res.locals.userId);
                     noteId = parseInt(req.params.noteId);
                     return [4 /*yield*/, notesServices.deleteNoteById(userId, noteId)];
                 case 1:

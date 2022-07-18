@@ -14,7 +14,7 @@ export const createCredentialsSchema = joi.object({
 
 export const notesSchema = joi.object({
   title: joi.string().max(50).required(),
-  note: joi.string().max(1000).required()
+  content: joi.string().max(1000).required()
 })
 
 export const cardSchema = joi.object({
