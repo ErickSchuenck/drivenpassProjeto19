@@ -20,3 +20,14 @@ export async function findWifi(userId : number, title : string) {
   });
   return result
 }
+
+
+
+export async function getAllWifisByUserId(userId : number) {
+  const result = await prisma.wifis.findMany({
+      where: {
+        ownerId: userId,
+      }
+    });
+    return result;
+}

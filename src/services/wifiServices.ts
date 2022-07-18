@@ -17,3 +17,8 @@ async function checkForWifiUniqueness(userId : number, title : string){
     }
   }
 }
+
+export async function getAllWifisByUserId(userId : number){
+  const allNotes = await wifiRepository.getAllWifisByUserId(userId)
+  return allNotes
+}
