@@ -21,3 +21,10 @@ export async function getNoteById(req: Request, res: Response) {
   const note = await notesServices.getNotelById(userId, noteId);
   res.status(200).send(note)
 }
+
+export async function deleteNoteById(req: Request, res: Response) {
+  const {userId} = res.locals;
+  const noteId = parseInt(req.params.noteId);
+  await notesServices.deleteNoteById(userId, noteId);
+  res.sendStatus(200)
+}

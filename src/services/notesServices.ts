@@ -32,3 +32,22 @@ export async function getNotelById(userId : number, noteId : number) {
   }
   return note;
 }
+
+export async function deleteNoteById(userId : number, noteId : number) {
+  const note = await notesRepository.getNoteById(userId, noteId);
+  if (!note) {
+    throw {
+      status: 404,
+      type: 'Not Found',
+      message: 'Note not found, please double check the id input'
+    }
+  }
+  if (note.ownerId !== userId){
+    throw {
+      status: 401,
+      type: 'Unathorized',
+      message: "You have no ownership over this note"
+    }
+  }
+  await notesRepository.deleteNoteById(noteId)
+}

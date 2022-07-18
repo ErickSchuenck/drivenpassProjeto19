@@ -68,5 +68,5 @@ export async function deleteCredentialById(userId : number, credentialId : numbe
       message: "You have no ownership over this credential"
     }
   }
-  await credentialsRepository.deleteCredentialById(userId, credentialId)
+  await credentialsRepository.deleteCredentialById(credentialId)
 }

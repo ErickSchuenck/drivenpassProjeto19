@@ -37,3 +37,11 @@ export async function getNoteById(userId : number, noteId : number) {
     });
   return result;
 }
+
+export async function deleteNoteById(noteId : number) {
+  await prisma.notes.delete({
+        where: {
+            id: noteId
+        }
+    })
+}
