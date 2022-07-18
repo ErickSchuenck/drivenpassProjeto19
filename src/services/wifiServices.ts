@@ -19,6 +19,37 @@ async function checkForWifiUniqueness(userId : number, title : string){
 }
 
 export async function getAllWifisByUserId(userId : number){
-  const allNotes = await wifiRepository.getAllWifisByUserId(userId)
-  return allNotes
+  const allWifis = await wifiRepository.getAllWifisByUserId(userId)
+  return allWifis
+}
+
+export async function getWifiById(userId : number, wifiId : number) {
+  const wifi = await wifiRepository.getWifiById(userId, wifiId);
+  if (!wifi) {
+    throw {
+      status: 404,
+      type: 'Not Found',
+      message: 'Wifi not found, please double check the id input'
+    }
+  }
+  return wifi;
+}
+
+export async function deleteWifiById(userId : number, wifiId : number){
+  const wifi = await wifiRepository.getWifiById(userId, wifiId);
+  if (!wifi) {
+    throw {
+      status: 404,
+      type: 'Not Found',
+      message: 'Wifi not found, please double check the id input'
+    }
+  }
+  if (wifi.ownerId !== userId){
+    throw {
+      status: 401,
+      type: 'Unathorized',
+      message: "You have no ownership over this wifi register"
+    }
+  }
+  await wifiRepository.deleteWifiById(wifiId)
 }

@@ -31,3 +31,21 @@ export async function getAllWifisByUserId(userId : number) {
     });
     return result;
 }
+
+export async function getWifiById(userId : number, wifiId : number) {
+  const result = await prisma.wifis.findFirst({
+        where: {
+            id: wifiId,
+            ownerId: userId
+        }
+    });
+  return result;
+}
+
+export async function deleteWifiById(wifiId : number) {
+  await prisma.wifis.delete({
+        where: {
+            id: wifiId
+        }
+    })
+}

@@ -13,3 +13,17 @@ export async function getAllWifisByUserId(req: Request, res: Response) {
   const allWifis = await wifiServices.getAllWifisByUserId(userId);
   res.status(200).send(allWifis)
 }
+
+export async function getWifiById(req: Request, res: Response) {
+  const {userId} = res.locals;
+  const wifiId = parseInt(req.params.wifiId);
+  const wifi = await wifiServices.getWifiById(userId, wifiId);
+  res.status(200).send(wifi)
+}
+
+export async function deleteWifiById(req: Request, res: Response) {
+  const {userId} = res.locals;
+  const wifiId = parseInt(req.params.wifiId);
+  await wifiServices.deleteWifiById(userId, wifiId);
+  res.sendStatus(200)
+}
