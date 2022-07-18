@@ -27,3 +27,13 @@ export async function getAllNotesByUserId(userId:number) {
     });
     return result;
 }
+
+export async function getNoteById(userId : number, noteId : number) {
+  const result = await prisma.notes.findFirst({
+        where: {
+            id: noteId,
+            ownerId: userId
+        }
+    });
+  return result;
+}

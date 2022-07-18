@@ -9,8 +9,15 @@ export async function registerNote(req: Request, res: Response) {
   res.sendStatus(201);
 }
 
-export async function getRoutes(req: Request, res: Response) {
+export async function getAllNotesByUserId(req: Request, res: Response) {
   const {userId} = res.locals;
   const allNotes = await notesServices.getAllNotes(userId);
   res.status(200).send(allNotes)
+}
+
+export async function getNoteById(req: Request, res: Response) {
+  const {userId} = res.locals;
+  const noteId = parseInt(req.params.noteId);
+  const note = await notesServices.getNotelById(userId, noteId);
+  res.status(200).send(note)
 }

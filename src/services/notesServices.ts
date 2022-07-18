@@ -20,3 +20,15 @@ export async function getAllNotes(userId : number) {
   const allNotes = await notesRepository.getAllNotesByUserId(userId)
   return allNotes
 }
+
+export async function getNotelById(userId : number, noteId : number) {
+  const note = await notesRepository.getNoteById(userId, noteId);
+  if (!note) {
+    throw {
+      status: 404,
+      type: 'Not Found',
+      message: 'Note not found, please double check the id input'
+    }
+  }
+  return note;
+}
