@@ -41,10 +41,11 @@ export function registerUser(data) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0:
-                    verifyIfUserIsUnique(data.email);
-                    return [4 /*yield*/, userRepository.insertUser(data)];
+                case 0: return [4 /*yield*/, verifyIfUserIsUnique(data.email)];
                 case 1:
+                    _a.sent();
+                    return [4 /*yield*/, userRepository.insertUser(data)];
+                case 2:
                     _a.sent();
                     return [2 /*return*/];
             }
@@ -61,6 +62,7 @@ export function login(data) {
                     return [4 /*yield*/, userRepository.getUserFromDb(email)];
                 case 1:
                     user = _a.sent();
+                    console.log(user.password, password);
                     encryptServices.compare(user.password, password);
                     token = jwt.sign("".concat(user.id), process.env.JWT_SECRET);
                     return [2 /*return*/, token];

@@ -12,6 +12,6 @@ export async function registerUser (req: Request, res: Response) {
 
 export async function login(req: Request, res: Response) {
   const data : {password : string, email : string}= req.body;
-  const token = userService.login(data)
+  const token = await userService.login(data)
   res.status(200).send(token)
 }

@@ -43,13 +43,6 @@ export function getUserFromDb(email) {
                 case 0: return [4 /*yield*/, prisma.users.findUnique({ where: { email: email } })];
                 case 1:
                     result = _a.sent();
-                    if (!result) {
-                        throw {
-                            status: 404,
-                            type: 'Not Found',
-                            message: "Sorry, but the email: ".concat(email, " is not registered in our database")
-                        };
-                    }
                     return [2 /*return*/, result];
             }
         });

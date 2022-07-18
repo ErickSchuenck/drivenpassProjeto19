@@ -12,7 +12,7 @@ export function decrypt(password : string){
   return cryptr.decrypt(password)
 }
 
-export function compare(password : string, encryptedPassword : string){
+export function compare(encryptedPassword : string, password : string){
   const verification = bcrypt.compareSync(password, encryptedPassword)
   if (!verification) {
     throw {

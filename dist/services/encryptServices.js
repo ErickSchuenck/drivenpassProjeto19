@@ -8,7 +8,7 @@ export function encrypt(password) {
 export function decrypt(password) {
     return cryptr.decrypt(password);
 }
-export function compare(password, encryptedPassword) {
+export function compare(encryptedPassword, password) {
     var verification = bcrypt.compareSync(password, encryptedPassword);
     if (!verification) {
         throw {

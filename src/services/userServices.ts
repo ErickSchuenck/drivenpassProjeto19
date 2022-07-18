@@ -3,13 +3,14 @@ import * as encryptServices from "./encryptServices.js"
 import jwt from "jsonwebtoken"
 
 export async function registerUser(data : {email : string, encryptedPassword : string}) {
-  verifyIfUserIsUnique(data.email)
+  await verifyIfUserIsUnique(data.email)
   await userRepository.insertUser(data)
 }
 
 export async function login(data : {email : string, password : string}) {
   const {email, password} = data;
   const user = await userRepository.getUserFromDb(email)
+  console.log(user.password, password)
   encryptServices.compare(user.password, password)
   const token = jwt.sign(`${user.id}`, process.env.JWT_SECRET as string)
   return token;

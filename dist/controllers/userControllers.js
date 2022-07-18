@@ -58,10 +58,15 @@ export function login(req, res) {
     return __awaiter(this, void 0, void 0, function () {
         var data, token;
         return __generator(this, function (_a) {
-            data = req.body;
-            token = userService.login(data);
-            res.status(200).send(token);
-            return [2 /*return*/];
+            switch (_a.label) {
+                case 0:
+                    data = req.body;
+                    return [4 /*yield*/, userService.login(data)];
+                case 1:
+                    token = _a.sent();
+                    res.status(200).send(token);
+                    return [2 /*return*/];
+            }
         });
     });
 }
