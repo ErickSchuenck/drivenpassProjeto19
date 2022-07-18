@@ -28,3 +28,9 @@ export const cardSchema = joi.object({
   isVirtual: joi.boolean().required(),
   type: joi.string().valid('CREDIT', 'DEBIT', 'BOTH').required()
 })
+
+export const wifiSchema = joi.object({
+  title: joi.string().required(),
+  userName: joi.string().required(),
+  password: joi.string().required()
+})
