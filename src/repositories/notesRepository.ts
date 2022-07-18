@@ -18,3 +18,12 @@ export async function registerNote(userId : number, content : string, title : st
       content}
   }); 
 }
+
+export async function getAllNotesByUserId(userId:number) {
+  const result = await prisma.notes.findMany({
+      where: {
+        ownerId: userId,
+      }
+    });
+    return result;
+}

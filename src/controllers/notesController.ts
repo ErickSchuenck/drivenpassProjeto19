@@ -8,3 +8,9 @@ export async function registerNote(req: Request, res: Response) {
   await notesServices.registerNote(userId, content, title)
   res.sendStatus(201);
 }
+
+export async function getRoutes(req: Request, res: Response) {
+  const {userId} = res.locals;
+  const allNotes = await notesServices.getAllNotes(userId);
+  res.status(200).send(allNotes)
+}

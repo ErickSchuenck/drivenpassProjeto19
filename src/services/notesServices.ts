@@ -15,3 +15,8 @@ async function checkForNoteUniqueness(userId : number, title : string){
     }
   }
 }
+
+export async function getAllNotes(userId : number) {
+  const allNotes = await notesRepository.getAllNotesByUserId(userId)
+  return allNotes
+}
