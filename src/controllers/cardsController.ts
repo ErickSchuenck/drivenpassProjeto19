@@ -18,7 +18,14 @@ export async function getAllCards(req: Request, res: Response) {
 
 export async function getCardById(req: Request, res: Response) {
   const {userId} = res.locals;
-  const cardId = parseInt(req.params.noteId);
+  const cardId = parseInt(req.params.cardId);
   const card = await cardServices.getCardById(userId, cardId)
   res.status(200).send(card)
+}
+
+export async function deleteCardById(req: Request, res: Response) {
+  const {userId} = res.locals;
+  const cardId = parseInt(req.params.cardId);
+  await cardServices.deleteCardById(userId, cardId);
+  res.sendStatus(200)
 }

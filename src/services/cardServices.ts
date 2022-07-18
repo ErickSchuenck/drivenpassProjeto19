@@ -53,3 +53,22 @@ export async function getCardById(userId : number, cardId : number) {
   }
   return card;
 }
+
+export async function deleteCardById(userId : number, cardId : number) {
+  const card = await cardsRepository.getCardById(userId, cardId);
+  if (!card) {
+    throw {
+      status: 404,
+      type: 'Not Found',
+      message: 'Card not found, please double check the id input'
+    }
+  }
+  if (card.ownerId !== userId){
+    throw {
+      status: 401,
+      type: 'Unathorized',
+      message: "You have no ownership over this card"
+    }
+  }
+  await cardsRepository.deleteCardById(cardId)
+}
