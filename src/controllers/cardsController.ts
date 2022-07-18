@@ -15,3 +15,10 @@ export async function getAllCards(req: Request, res: Response) {
   const allCards = await cardServices.getAllCards(userId);
   res.status(200).send(allCards)
 }
+
+export async function getCardById(req: Request, res: Response) {
+  const {userId} = res.locals;
+  const cardId = parseInt(req.params.noteId);
+  const card = await cardServices.getCardById(userId, cardId)
+  res.status(200).send(card)
+}
