@@ -12,3 +12,8 @@ export const createCredentialsSchema = joi.object({
     password: joi.string().required(),
     ownerId: joi.number().required()
 });
+
+export const notesSchema = joi.object({
+  title: joi.string().max(50).required(),
+  note: joi.string().max(1000).required()
+})
