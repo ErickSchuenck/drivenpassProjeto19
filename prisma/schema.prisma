@@ -7,12 +7,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum cardTypes {
+  CREDIT
+  DEBIT
+  BOTH
+}
+
 model users {
   id       Int    @id @default(autoincrement())
   email    String @unique
   password String
   credentials credentials[]
   notes notes[]
+  cards cards[]
 }
 
 model credentials {
@@ -29,6 +36,20 @@ model notes {
   id Int @id @default(autoincrement())
   content String
   title String
+  owner users @relation(fields: [ownerId], references: [id])
+  ownerId Int
+}
+
+model cards {
+  id              Int @id @default(autoincrement())
+  title           String
+  name            String
+  number          String
+  expirationDate  String
+  cvc             String
+  password        String
+  isVirtual      Boolean
+  type            cardTypes
   owner users @relation(fields: [ownerId], references: [id])
   ownerId Int
 }
