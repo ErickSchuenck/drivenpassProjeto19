@@ -20,7 +20,8 @@ async function checkForWifiUniqueness(userId : number, title : string){
 
 export async function getAllWifisByUserId(userId : number){
   const allWifis = await wifiRepository.getAllWifisByUserId(userId)
-  return allWifis
+  const decryptedAllWifis = allWifis.map(wifi=> wifi.password = encryptServices.decrypt(wifi.password))
+  return decryptedAllWifis
 }
 
 export async function getWifiById(userId : number, wifiId : number) {
@@ -32,7 +33,8 @@ export async function getWifiById(userId : number, wifiId : number) {
       message: 'Wifi not found, please double check the id input'
     }
   }
-  return wifi;
+  const decryptedWifiPassword = encryptServices.decrypt(wifi.password)
+  return {...wifi, decryptedWifiPassword};
 }
 
 export async function deleteWifiById(userId : number, wifiId : number){

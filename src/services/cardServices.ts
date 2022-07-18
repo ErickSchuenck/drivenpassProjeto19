@@ -51,7 +51,8 @@ export async function getCardById(userId : number, cardId : number) {
       message: 'Card not found, please double check the id input'
     }
   }
-  return card;
+  const decryptedCard = decryptCard(card)
+  return decryptedCard;
 }
 
 export async function deleteCardById(userId : number, cardId : number) {
@@ -71,4 +72,11 @@ export async function deleteCardById(userId : number, cardId : number) {
     }
   }
   await cardsRepository.deleteCardById(cardId)
+}
+
+function decryptCard(card : data){
+  const {title, name, number, expirationDate, cvc, password, isVirtual, type, ownerId} = card
+  const decryptedPassword = encryptServices.decrypt(password)
+  const output = {title, name, number, expirationDate, cvc, decryptedPassword, isVirtual, type, ownerId}
+  return output
 }
