@@ -4,7 +4,7 @@ import { createCredentialsSchema } from "../schemas/schemas.js";
 import { createCredential, getCredentials, getCredentialById, deleteCredentialById } from "../controllers/credentialsController.js";
 import { validateToken } from "../middlewares/validateToken.js";
 var credentialsRouter = Router();
-credentialsRouter.post("/createCredential", validateSchema(createCredentialsSchema), validateToken, createCredential);
+credentialsRouter.post("/credentials", validateSchema(createCredentialsSchema), validateToken, createCredential);
 credentialsRouter.get("/credentials", validateToken, getCredentials);
 credentialsRouter.get("/credentials/:credentialId", validateToken, getCredentialById);
 credentialsRouter["delete"]("/credentials/:credentialId", validateToken, deleteCredentialById);

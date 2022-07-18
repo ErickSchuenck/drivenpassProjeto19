@@ -8,16 +8,15 @@ export type credentialType = {
   title : string; 
   userName : string;
   password : string;
-  ownerId : number
   userId : number
 }
 
 
 export async function createCredential(data : credentialType){
-  const {url, title, userName, password, ownerId, userId} = data;
+  const {url, title, userName, password, userId} = data;
   await checkIfCredentialIsUnique(title, userId);
   const encriptedPassword = encryptServices.encrypt(password)
-  await credentialsRepository.insertCredential(url, title, userName, encriptedPassword, ownerId);
+  await credentialsRepository.insertCredential(url, title, userName, encriptedPassword, userId);
 }
 
 async function checkIfCredentialIsUnique(title : string, userId : number) {
@@ -32,9 +31,9 @@ async function checkIfCredentialIsUnique(title : string, userId : number) {
 }
 
 export async function getAllCredentials(userId: number) {
-  const allCredentials =  await credentialsRepository.getAllCredentialsByUserId(userId)
-  const decryptedCredentials = allCredentials.map(item => item.password = encryptServices.decrypt(item.password))
-  return decryptedCredentials;
+  let allCredentials =  await credentialsRepository.getAllCredentialsByUserId(userId)
+  allCredentials.map(item => item.password = encryptServices.decrypt(item.password))
+  return allCredentials;
 }
 
 export async function getCredentialById(userId: number, credentialId : number) {

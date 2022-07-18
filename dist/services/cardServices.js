@@ -79,17 +79,17 @@ function checkIfCardIsUnique(title, userId) {
 }
 export function getAllCards(userId) {
     return __awaiter(this, void 0, void 0, function () {
-        var allCards, decryptedCards;
+        var allCards;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, cardsRepository.getAllCardsByUserId(userId)];
                 case 1:
                     allCards = _a.sent();
-                    decryptedCards = allCards.map(function (card) {
+                    allCards.map(function (card) {
                         card.password = encryptServices.decrypt(card.password);
                         card.cvc = encryptServices.decrypt(card.cvc);
                     });
-                    return [2 /*return*/, decryptedCards];
+                    return [2 /*return*/, allCards];
             }
         });
     });

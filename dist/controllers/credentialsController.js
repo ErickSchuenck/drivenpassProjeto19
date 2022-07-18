@@ -52,7 +52,7 @@ export function createCredential(req, res) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    userId = res.locals.userId;
+                    userId = parseInt(res.locals.userId);
                     data = __assign({ userId: userId }, req.body);
                     return [4 /*yield*/, credentialsServices.createCredential(data)];
                 case 1:
@@ -69,7 +69,7 @@ export function getCredentials(req, res) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    userId = res.locals.userId;
+                    userId = parseInt(res.locals.userId);
                     return [4 /*yield*/, credentialsServices.getAllCredentials(userId)];
                 case 1:
                     allCredentials = _a.sent();
@@ -85,7 +85,7 @@ export function getCredentialById(req, res) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    userId = res.locals.userId;
+                    userId = parseInt(res.locals.userId);
                     credentialId = parseInt(req.params.credentialId);
                     return [4 /*yield*/, credentialsServices.getCredentialById(userId, credentialId)];
                 case 1:
@@ -102,7 +102,7 @@ export function deleteCredentialById(req, res) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    userId = res.locals.userId;
+                    userId = parseInt(res.locals.userId);
                     credentialId = parseInt(req.params.credentialId);
                     return [4 /*yield*/, credentialsServices.deleteCredentialById(userId, credentialId)];
                 case 1:

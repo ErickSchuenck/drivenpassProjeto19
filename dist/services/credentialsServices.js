@@ -39,16 +39,16 @@ import * as encryptServices from "./encryptServices.js";
 import * as credentialsRepository from "../repositories/credentialsRepository.js";
 export function createCredential(data) {
     return __awaiter(this, void 0, void 0, function () {
-        var url, title, userName, password, ownerId, userId, encriptedPassword;
+        var url, title, userName, password, userId, encriptedPassword;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    url = data.url, title = data.title, userName = data.userName, password = data.password, ownerId = data.ownerId, userId = data.userId;
+                    url = data.url, title = data.title, userName = data.userName, password = data.password, userId = data.userId;
                     return [4 /*yield*/, checkIfCredentialIsUnique(title, userId)];
                 case 1:
                     _a.sent();
                     encriptedPassword = encryptServices.encrypt(password);
-                    return [4 /*yield*/, credentialsRepository.insertCredential(url, title, userName, encriptedPassword, ownerId)];
+                    return [4 /*yield*/, credentialsRepository.insertCredential(url, title, userName, encriptedPassword, userId)];
                 case 2:
                     _a.sent();
                     return [2 /*return*/];
@@ -78,14 +78,14 @@ function checkIfCredentialIsUnique(title, userId) {
 }
 export function getAllCredentials(userId) {
     return __awaiter(this, void 0, void 0, function () {
-        var allCredentials, decryptedCredentials;
+        var allCredentials;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, credentialsRepository.getAllCredentialsByUserId(userId)];
                 case 1:
                     allCredentials = _a.sent();
-                    decryptedCredentials = allCredentials.map(function (item) { return item.password = encryptServices.decrypt(item.password); });
-                    return [2 /*return*/, decryptedCredentials];
+                    allCredentials.map(function (item) { return item.password = encryptServices.decrypt(item.password); });
+                    return [2 /*return*/, allCredentials];
             }
         });
     });

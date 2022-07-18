@@ -4,11 +4,10 @@ export var UserSchema = joi.object({
     password: joi.string().min(10).required()
 });
 export var createCredentialsSchema = joi.object({
-    url: joi.string().uri().required(),
+    url: joi.string().required(),
     title: joi.string().required(),
     userName: joi.string().required(),
-    password: joi.string().required(),
-    ownerId: joi.number().required()
+    password: joi.string().required()
 });
 export var notesSchema = joi.object({
     title: joi.string().max(50).required(),

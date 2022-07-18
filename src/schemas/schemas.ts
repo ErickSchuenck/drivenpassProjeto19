@@ -6,11 +6,10 @@ export const UserSchema = joi.object({
 })
 
 export const createCredentialsSchema = joi.object({
-    url: joi.string().uri().required(),  
+    url: joi.string().required(),  
     title: joi.string().required(),
     userName: joi.string().required(),
     password: joi.string().required(),
-    ownerId: joi.number().required()
 });
 
 export const notesSchema = joi.object({

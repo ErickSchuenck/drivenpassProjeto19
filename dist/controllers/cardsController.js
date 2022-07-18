@@ -52,7 +52,7 @@ export function registerCard(req, res) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    userId = res.locals.userId;
+                    userId = parseInt(res.locals.userId);
                     ownerId = userId;
                     data = __assign({ ownerId: ownerId }, req.body);
                     return [4 /*yield*/, cardServices.registerCard(data)];
@@ -70,7 +70,7 @@ export function getAllCards(req, res) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    userId = res.locals.userId;
+                    userId = parseInt(res.locals.userId);
                     return [4 /*yield*/, cardServices.getAllCards(userId)];
                 case 1:
                     allCards = _a.sent();
@@ -86,7 +86,7 @@ export function getCardById(req, res) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    userId = res.locals.userId;
+                    userId = parseInt(res.locals.userId);
                     cardId = parseInt(req.params.cardId);
                     return [4 /*yield*/, cardServices.getCardById(userId, cardId)];
                 case 1:
@@ -103,7 +103,7 @@ export function deleteCardById(req, res) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    userId = res.locals.userId;
+                    userId = parseInt(res.locals.userId);
                     cardId = parseInt(req.params.cardId);
                     return [4 /*yield*/, cardServices.deleteCardById(userId, cardId)];
                 case 1:

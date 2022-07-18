@@ -42,7 +42,7 @@ export function registerWifi(req, res) {
             switch (_b.label) {
                 case 0:
                     _a = req.body, title = _a.title, userName = _a.userName, password = _a.password;
-                    userId = res.locals.userId;
+                    userId = parseInt(res.locals.userId);
                     return [4 /*yield*/, wifiServices.registerWifi(title, userName, password, userId)];
                 case 1:
                     _b.sent();
@@ -58,7 +58,7 @@ export function getAllWifisByUserId(req, res) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    userId = res.locals.userId;
+                    userId = parseInt(res.locals.userId);
                     return [4 /*yield*/, wifiServices.getAllWifisByUserId(userId)];
                 case 1:
                     allWifis = _a.sent();
@@ -74,7 +74,7 @@ export function getWifiById(req, res) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    userId = res.locals.userId;
+                    userId = parseInt(res.locals.userId);
                     wifiId = parseInt(req.params.wifiId);
                     return [4 /*yield*/, wifiServices.getWifiById(userId, wifiId)];
                 case 1:
@@ -91,7 +91,7 @@ export function deleteWifiById(req, res) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    userId = res.locals.userId;
+                    userId = parseInt(res.locals.userId);
                     wifiId = parseInt(req.params.wifiId);
                     return [4 /*yield*/, wifiServices.deleteWifiById(userId, wifiId)];
                 case 1:

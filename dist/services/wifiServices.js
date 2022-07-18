@@ -84,14 +84,14 @@ function checkForWifiUniqueness(userId, title) {
 }
 export function getAllWifisByUserId(userId) {
     return __awaiter(this, void 0, void 0, function () {
-        var allWifis, decryptedAllWifis;
+        var allWifis;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, wifiRepository.getAllWifisByUserId(userId)];
                 case 1:
                     allWifis = _a.sent();
-                    decryptedAllWifis = allWifis.map(function (wifi) { return wifi.password = encryptServices.decrypt(wifi.password); });
-                    return [2 /*return*/, decryptedAllWifis];
+                    allWifis.map(function (wifi) { return wifi.password = encryptServices.decrypt(wifi.password); });
+                    return [2 /*return*/, allWifis];
             }
         });
     });

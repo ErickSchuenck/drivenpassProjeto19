@@ -62,7 +62,6 @@ export function login(data) {
                     return [4 /*yield*/, userRepository.getUserFromDb(email)];
                 case 1:
                     user = _a.sent();
-                    console.log(user.password, password);
                     encryptServices.compare(user.password, password);
                     token = jwt.sign("".concat(user.id), process.env.JWT_SECRET);
                     return [2 /*return*/, token];

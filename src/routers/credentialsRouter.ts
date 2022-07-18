@@ -5,7 +5,7 @@ import { createCredential, getCredentials, getCredentialById, deleteCredentialBy
 import { validateToken } from "../middlewares/validateToken.js";
 
 const credentialsRouter = Router();
-credentialsRouter.post("/createCredential", validateSchema(createCredentialsSchema), validateToken, createCredential );
+credentialsRouter.post("/credentials", validateSchema(createCredentialsSchema), validateToken, createCredential );
 credentialsRouter.get("/credentials", validateToken, getCredentials)
 credentialsRouter.get("/credentials/:credentialId", validateToken, getCredentialById)
 credentialsRouter.delete("/credentials/:credentialId", validateToken, deleteCredentialById)

@@ -20,8 +20,8 @@ async function checkForWifiUniqueness(userId : number, title : string){
 
 export async function getAllWifisByUserId(userId : number){
   const allWifis = await wifiRepository.getAllWifisByUserId(userId)
-  const decryptedAllWifis = allWifis.map(wifi=> wifi.password = encryptServices.decrypt(wifi.password))
-  return decryptedAllWifis
+  allWifis.map(wifi=> wifi.password = encryptServices.decrypt(wifi.password))
+  return allWifis
 }
 
 export async function getWifiById(userId : number, wifiId : number) {
